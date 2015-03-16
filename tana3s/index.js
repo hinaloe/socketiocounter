@@ -14,6 +14,7 @@ io.on('connection',function(socket){
   if (m.value && m.value==='pyonpyon') {
    count++;
    io.emit('message',{value:count});
+   console.log(count);
    if (count % 1000 === 0 ) {
     fs.writeFile(fileName,count ,function(err){
      if(err)throw err;
