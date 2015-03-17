@@ -1,15 +1,19 @@
 var io = require('socket.io-client');
-var socket = io(/*"http://sudosan.net:3940/"*/"http://localhost:3980");
+var socket = io("http://localhost:3980");
 var connected = false;
 var interval;
     socket.on('connect', function(msg) {
             console.log("connected");
             connected = true;
             socket.emit('message', { value: 'load' });
-interval = setInterval(gay,100);
+            interval = setInterval(gay,100);
     });
 socket.on('message',function(msg) {
-console.log(msg.value);
+    console.log(msg.value);
+});
+
+socket.on('reject',function(data) {
+  console.log(data.value);
 });
 
 
@@ -20,8 +24,8 @@ socket.on('disconnect', function(data) {
 });
 
 function gay () {
- for(i=0;i<50;i++)
- socket.emit('message',{value:'pyonpyon'});
+ /**/for(i=0;i<100;i++)
+    socket.emit('message', { value: 'pyonpyon' });
 }
 
 
